@@ -14,8 +14,6 @@ int main(int argc, char *argv[]) {
 	dkw_List_push(l, 8);
 	dkw_List_push(l, 7);
 
-	dkw_List_print(l);
-
 	dkw_List_delete(l);
         return 0;
 }

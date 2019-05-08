@@ -1,7 +1,19 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 #include "list.h"
+
+typedef struct dkw_list_node dkw_list_node;
+struct dkw_list_node {
+	dkw_list_node *prev;
+	dkw_list_node *next;
+	int v;
+};
+
+struct dkw_List {
+	dkw_list_node *head;
+	dkw_list_node *tail;
+	uintmax_t size;
+};
 
 dkw_List *dkw_List_new() {
 	dkw_List *l = (dkw_List*) calloc(1, sizeof(dkw_List));
@@ -72,36 +84,5 @@ void dkw_List_delete(dkw_List *l) {
 		c = n;
 	}
 	free(l);
-}
-
-void dkw_List_print(dkw_List *l) {
-	if (l->head == NULL) {
-		printf("l->head: NULL\n");
-	} else {
-		printf("l->head: %x\n", l->head);
-	}
-	if (l->tail == NULL) {
-		printf("l->tail: NULL\n");
-	} else {
-		printf("l->tail: %x\n", l->tail);
-	}
-	printf("l->size: %d\n\n", l->size);
-
-	dkw_list_node *c = l->head;
-	for (int i = 0; i < l->size; i++) {
-		printf("  %d ->addr: %x\n", i, c);
-		if (c->prev == NULL) {
-			printf("  %d ->prev: NULL\n", i);
-		} else {
-			printf("  %d ->prev: %x\n", i, c->prev);
-		}
-		if (c->next == NULL) {
-			printf("  %d ->next: NULL\n", i);
-		} else {
-			printf("  %d ->next: %x\n", i, c->next);
-		}
-		printf("  %d ->v: %d\n\n", i, c->v);
-		c = c->next;
-	}
 }
 
