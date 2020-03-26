@@ -4,6 +4,7 @@
 #include <string.h>
 #include "array.h"
 
+
 struct dkw_Array {
 	int size;
 	int capacity;
