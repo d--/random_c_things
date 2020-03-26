@@ -40,9 +40,7 @@ void dkw_List_push(dkw_List *l, int v) {
 }
 
 int dkw_List_pop(dkw_List *l) {
-	if (l->size == 0) {
-		assert("error" == "list is empty");
-	}
+	assert(l->size > 0);
 
 	dkw_list_node *c = l->tail;
 	int v = c->v;
@@ -60,9 +58,8 @@ int dkw_List_pop(dkw_List *l) {
 }
 
 int dkw_List_read(dkw_List *l, int index) {
-	if (index > l->size - 1) {
-		assert("error" == "list index of out range");
-	}
+	assert(index >= 0);
+	assert(index < l->size);
 
 	dkw_list_node *c = l->head;
 	for (int i = 0; i < index; i++) {

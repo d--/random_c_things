@@ -5,11 +5,14 @@ all: bin/main
 run: bin/main
 	bin/main
 
-bin/main: build/list.o bin
-	$(CC) src/main.c build/list.o -o bin/main
+bin/main: build/list.o build/array.o bin
+	$(CC) src/main.c build/list.o build/array.o -o bin/main
 
 build/list.o: build
 	$(CC) -c src/ds/list.c -o build/list.o
+
+build/array.o: build
+	$(CC) -c src/ds/array.c -o build/array.o
 
 build:
 	@mkdir -p build
