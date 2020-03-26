@@ -4,17 +4,17 @@
 #include "array.h"
 
 
-struct dkw_Array {
+struct dkw_array {
 	int size;
 	int capacity;
 	int *data;
 };
 
-dkw_Array *dkw_Array_new() {
-	return (dkw_Array *) calloc(sizeof(dkw_Array), 1);
+struct dkw_array *dkw_array_new() {
+	return (struct dkw_array *) calloc(sizeof(struct dkw_array), 1);
 }
 
-void dkw_Array_insert(dkw_Array *a, int d) {
+void dkw_array_insert(struct dkw_array *a, int d) {
 	a->size = a->size + 1;
 
 	if (a->capacity == 0) {
@@ -38,41 +38,42 @@ void dkw_Array_insert(dkw_Array *a, int d) {
 	a->data[a->size - 1] = d;
 }
 
-int dkw_Array_get(dkw_Array *a, int index) {
+int dkw_array_get(struct dkw_array *a, int index) {
 	assert(index >= 0);
 	assert(index < a->size);
 	return a->data[index];
 }
 
-void dkw_Array_delete(dkw_Array *a) {
+void dkw_array_delete(struct dkw_array *a) {
 	free(a->data);
 	free(a);
 }
 
 
-struct dkw_Stack {
-	dkw_Array *array;
+struct dkw_stack {
+	struct dkw_array *array;
 	int size;
 };
 
-dkw_Stack * dkw_Stack_new() {
-	dkw_Stack *s = (dkw_Stack *) calloc(sizeof(dkw_Stack), 1);
-	s->array = dkw_Array_new();
+struct dkw_stack *dkw_stack_new() {
+	struct dkw_stack *s;
+	s = (struct dkw_stack *) calloc(sizeof(struct dkw_stack), 1);
+	s->array = dkw_array_new();
 	return s;
 }
 
-void dkw_Stack_push(dkw_Stack *s, int d) {
-	dkw_Array_insert(s->array, d);
+void dkw_stack_push(struct dkw_stack *s, int d) {
+	dkw_array_insert(s->array, d);
 	s->size = s->size + 1;
 }
 
-int dkw_Stack_pop(dkw_Stack *s) {
+int dkw_stack_pop(struct dkw_stack *s) {
 	s->size = s->size - 1;
-	return dkw_Array_get(s->array, s->size);
+	return dkw_array_get(s->array, s->size);
 }
 
-void dkw_Stack_delete(dkw_Stack *s) {
-	dkw_Array_delete(s->array);
+void dkw_stack_delete(struct dkw_stack *s) {
+	dkw_array_delete(s->array);
 	free(s);
 }
 

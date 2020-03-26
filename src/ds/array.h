@@ -1,17 +1,15 @@
 #ifndef __DKW_ARRAY__
 #define __DKW_ARRAY__
 
-typedef struct dkw_Array dkw_Array;
-dkw_Array * dkw_Array_new();
-void dkw_Array_insert(dkw_Array *a, int d);
-int dkw_Array_get(dkw_Array *a, int index);
-void dkw_Array_delete(dkw_Array *a);
+struct dkw_array *dkw_array_new();
+void dkw_array_insert(struct dkw_array *a, int d);
+int dkw_array_get(struct dkw_array *a, int index);
+void dkw_array_delete(struct dkw_array *a);
 
-typedef struct dkw_Stack dkw_Stack;
-dkw_Stack * dkw_Stack_new();
-void dkw_Stack_push(dkw_Stack *s, int d);
-int dkw_Stack_pop(dkw_Stack *s);
-void dkw_Stack_delete(dkw_Stack *s);
+struct dkw_stack *dkw_stack_new();
+void dkw_stack_push(struct dkw_stack *s, int d);
+int dkw_stack_pop(struct dkw_stack *s);
+void dkw_stack_delete(struct dkw_stack *s);
 
 #endif // __DKW_ARRAY__
 
