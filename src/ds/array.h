@@ -2,7 +2,6 @@
 #define __DKW_ARRAY__
 
 typedef struct dkw_Array dkw_Array;
-
 dkw_Array * dkw_Array_new();
 void dkw_Array_insert(dkw_Array *a, int d);
 int dkw_Array_get(dkw_Array *a, int index);
